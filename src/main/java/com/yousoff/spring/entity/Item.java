@@ -25,7 +25,7 @@ public class Item implements Serializable {
 	@Id
 	@Access(AccessType.PROPERTY)
 	@Column(name="ID")
-	private int id;
+	private Integer id;
 	
 	@Column(name="NAME")
 	private String name; 
@@ -34,7 +34,7 @@ public class Item implements Serializable {
 	private String description;
 	
 	@Column(name="USER_ID")
-	private int userId; 
+	private Integer userId; 
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@ToString.Exclude

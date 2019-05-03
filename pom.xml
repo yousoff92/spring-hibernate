@@ -13,7 +13,7 @@
 		<spring.version>5.0.2.RELEASE</spring.version>
 		<hibernate.version>5.3.1.Final</hibernate.version>
 		<tomcat.version>9.0.1</tomcat.version>
-		
+
 		<!-- MySQL version based on DB version -->
 		<mysql.version>8.0.11</mysql.version>
 		<lombok.version>1.18.6</lombok.version>
@@ -55,5 +55,14 @@
 			<version>${mysql.version}</version>
 			<scope>runtime</scope>
 		</dependency>
+
+		<!-- Utility -->
+		<!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.3</version>
+		</dependency>
+
 	</dependencies>
 </project>

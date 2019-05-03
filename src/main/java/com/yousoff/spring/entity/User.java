@@ -28,7 +28,7 @@ public class User implements Serializable {
 	@Id
 	@Access(AccessType.PROPERTY)
 	@Column(name="ID")
-	private int id;
+	private Integer id;
 	
 	@Column(name="NAME")
 	private String name; 

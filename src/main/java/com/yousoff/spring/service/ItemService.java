@@ -33,5 +33,13 @@ public class ItemService {
 		List<Item> items = itemDao.getObjectListByCriteria(Item.class, exps);
 		return items;
 	}
+	
+	public List<Item> getEnabledItemsByUserId(Integer userId) throws Exception {
+		Item input = new Item();
+		input.setUserId(userId);
+		
+		List<Item> items = itemDao.getObjectListByStoredProcedure(input, "P_ITEM_ENABLED_BY_USER", new String[]{"userId"});
+		return items;
+	}
 
 }

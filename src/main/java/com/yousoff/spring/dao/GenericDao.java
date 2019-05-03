@@ -3,11 +3,14 @@ package com.yousoff.spring.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.apache.commons.beanutils.PropertyUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -54,7 +57,33 @@ public class GenericDao {
 	}
 	
 	// TODO - get object by stored procedure
+	@SuppressWarnings("unchecked")
+	public List<Object[]> getObjectListByStoredProcedure(String procedureName) {
+		StoredProcedureQuery storedProcedure = getCurrentSession().createStoredProcedureQuery(procedureName);
+		storedProcedure.execute();
+		return storedProcedure.getResultList();
+	}
 	
+	@SuppressWarnings("unchecked")
+	public <T> List<T> getObjectListByStoredProcedure(T t, String procedureName, String[] parameters) throws Exception {
+		StoredProcedureQuery storedProcedure = getCurrentSession().createStoredProcedureQuery(procedureName, t.getClass());
+		
+		int i = 1;
+		for(String param : parameters) {
+			
+			System.out.println(PropertyUtils.getPropertyType(t, param));
+			System.out.println(PropertyUtils.getProperty(t, param).getClass());
+			
+			storedProcedure.registerStoredProcedureParameter(i, PropertyUtils.getPropertyType(t, param), ParameterMode.IN);
+			storedProcedure.setParameter(i, PropertyUtils.getProperty(t, param));
+			i++;
+		}
+		
+		storedProcedure.execute();
+		return storedProcedure.getResultList();
+	}
+	
+	// TODO - get object with pagination
 	
 	private <T> List<Predicate> getRestrictions(CriteriaBuilder criteriaBuilder, Root<T> root, List<Expression> exps) {
 		

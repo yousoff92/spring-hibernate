@@ -45,9 +45,15 @@ public class MainApplication {
 	}
 
 
-	private static void testItemService(AnnotationConfigApplicationContext ctx) {
+	private static void testItemService(AnnotationConfigApplicationContext ctx) throws Exception {
 		ItemService itemService = ctx.getBean(ItemService.class);
 		List<Item> items = itemService.getAllItems();
+		for(Item item : items) {
+			System.out.println(item);
+		}
+		items.clear();
+		
+		List<Item> items = itemService.getEnabledItemsByUserId(Integer.valueOf(1));
 		for(Item item : items) {
 			System.out.println(item);
 		}
