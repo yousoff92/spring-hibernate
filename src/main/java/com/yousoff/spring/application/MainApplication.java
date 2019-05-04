@@ -53,7 +53,7 @@ public class MainApplication {
 		}
 		items.clear();
 		
-		List<Item> items = itemService.getEnabledItemsByUserId(Integer.valueOf(1));
+		items = itemService.getEnabledItemsByUserId(Integer.valueOf(1));
 		for(Item item : items) {
 			System.out.println(item);
 		}
