@@ -15,7 +15,7 @@
 		<tomcat.version>9.0.1</tomcat.version>
 
 		<!-- MySQL version based on DB version -->
-		<mysql.version>8.0.11</mysql.version>
+		<mysql.version>8.0.28</mysql.version>
 		<lombok.version>1.18.6</lombok.version>
 	</properties>
 
